@@ -1,5 +1,7 @@
 package com.giero.sma.dto;
 
+import com.giero.sma.entity.Action;
+
 import java.util.Objects;
 
 public class ActionRequestDto {
@@ -7,6 +9,10 @@ public class ActionRequestDto {
     private String userId;
     private String gameId;
     private String action;
+
+    public Action toAction() {
+        return new Action(userId, gameId, action);
+    }
 
     public String getUserId() {
         return userId;

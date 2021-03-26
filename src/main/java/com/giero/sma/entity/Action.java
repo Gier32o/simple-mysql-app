@@ -1,25 +1,26 @@
-package com.giero.sma.dto;
+package com.giero.sma.entity;
 
-import com.giero.sma.entity.Action;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Objects;
 
-public class ActionResponseDto {
+import static javax.persistence.GenerationType.AUTO;
 
+@Entity
+public class Action {
+
+    @Id
+    @GeneratedValue(strategy = AUTO)
     private Integer id;
     private String userId;
     private String gameId;
     private String action;
 
-    public ActionResponseDto(Integer id, String userId, String gameId, String action) {
-        this.id = id;
+    public Action(String userId, String gameId, String action) {
         this.userId = userId;
         this.gameId = gameId;
         this.action = action;
-    }
-
-    public static ActionResponseDto fromAction(Action action) {
-        return new ActionResponseDto(action.getId(), action.getUserId(), action.getGameId(), action.getAction());
     }
 
     public Integer getId() {
@@ -58,8 +59,8 @@ public class ActionResponseDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ActionResponseDto that = (ActionResponseDto) o;
-        return Objects.equals(id, that.id) && Objects.equals(userId, that.userId) && Objects.equals(gameId, that.gameId) && Objects.equals(action, that.action);
+        Action action1 = (Action) o;
+        return Objects.equals(id, action1.id) && Objects.equals(userId, action1.userId) && Objects.equals(gameId, action1.gameId) && Objects.equals(action, action1.action);
     }
 
     @Override
